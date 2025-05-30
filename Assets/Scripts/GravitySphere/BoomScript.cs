@@ -6,19 +6,21 @@ public class BoomScript : MonoBehaviour
     [SerializeField] private float _radius = 3f;
     [SerializeField] private float _power = 3f;
     [SerializeField] private Rigidbody[] _rbs;
-    
-    void Start()
-    {
-        
-    }
 
+    private bool isExplosion = false;
+ 
     void Update()
     {
-        _timeToExplosion -= Time.deltaTime;
+        if (isExplosion) return;
 
-        if (_timeToExplosion <= 0)
+        if (_timeToExplosion > 0)
+        {
+            _timeToExplosion -= Time.deltaTime;
+        }
+        else 
         {
             Boom();
+            isExplosion = true;
         }
     }
 
@@ -33,8 +35,6 @@ public class BoomScript : MonoBehaviour
                 rb.AddForce(direction.normalized * _power * (_radius - Vector3.Distance(
                     transform.position, rb.transform.position)), ForceMode.Impulse);
             }
-
-            _timeToExplosion = 3;
         }
     }
 }
