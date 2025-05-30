@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BoomScript : MonoBehaviour
+public class BoomController : MonoBehaviour
 {
     [SerializeField] private float _timeToExplosion = 3f;
     [SerializeField] private float _radius = 3f;
